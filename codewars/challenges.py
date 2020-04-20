@@ -50,9 +50,36 @@ def trib_sequence(n):
 
         return base
 
-print(trib_sequence(4))
+# print(trib_sequence(4))
 
+#####################################################################################################
+# 3
+# Create a RECURSIVE tribonacci sequence with n elements and ouptut it in a list. If n == 0 return empty list.
+# 0 1 1 2 4 7 13 24 ...etc
+# [0, 1, 1, 2, 4, 7, 13, 24,]
 
+def outer_func(n):
+    base = [0, 1, 1]
 
+    if n == 0:
+        return []
+    if n == 1:
+        return [base[0]]
+    if n == 2:
+        return [base[0], base[1]]
+    if n == 3:
+        return base
 
-        
+    def rec_trib_sequence():
+        nonlocal n
+        nonlocal base
+        if len(base) == n:
+            return base
+        base.append(base[len(base)-1] + base[len(base)-2] + base[len(base)-3])
+        rec_trib_sequence()
+
+    if n > 3:
+        rec_trib_sequence()
+        return base
+
+print(outer_func(7))
